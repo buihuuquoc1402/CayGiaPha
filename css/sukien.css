@@ -1,0 +1,166 @@
+/* CSS CHO PHẦN SỰ KIỆN */
+
+.event-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.register-event-button {
+    background-color: #6a532d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.register-event-button:hover {
+    background-color: #b8860b;
+}
+
+.timeline-container {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    padding-bottom: 50px;
+}
+
+/* Đường kẻ chính giữa */
+.timeline-container::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background-color: #c99e69;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1px;
+    z-index: 1;
+}
+
+.timeline-item {
+    padding: 10px 0;
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Chấm tròn/Điểm mốc */
+.timeline-dot {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background-color: white;
+    border: 3px solid #b8860b;
+    top: 30px;
+    border-radius: 50%;
+    z-index: 10;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* DATE BOX (Hiển thị ngày tháng) */
+.date-box {
+    padding: 15px;
+    background-color: #f7f1e3;
+    border: 1px solid #c99e69;
+    border-radius: 8px;
+    position: relative;
+    width: 40%;
+    float: left;
+    z-index: 5;
+    text-align: right;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+}
+
+.date-box-left {
+    float: right;
+    text-align: left;
+    margin-left: 20px;
+}
+
+/* Tam giác chỉ định vị trí trên timeline */
+.date-box::after {
+    content: '';
+    position: absolute;
+    top: 25px;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-color: transparent transparent transparent #c99e69;
+    right: -20px;
+}
+
+.date-box-left::after {
+    right: auto;
+    left: -20px;
+    border-color: transparent #c99e69 transparent transparent;
+}
+
+.date-gregorian {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #8b0000;
+}
+
+.date-lunar {
+    display: block;
+    font-size: 14px;
+    color: #6a532d;
+    margin-top: 5px;
+}
+
+
+/* CONTENT BOX (Hộp nội dung sự kiện) */
+.content-box {
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    position: relative;
+    width: 40%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 5;
+    min-height: 100px;
+}
+
+.content-right {
+    float: right;
+    margin-left: 20px;
+}
+
+.content-left {
+    float: left;
+    margin-right: 20px;
+}
+
+.content-box h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 18px;
+}
+
+.content-box ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 10px;
+}
+
+.event-location,
+.event-note {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0;
+}
+
+/* Clearfix để xử lý float */
+.timeline-item::after {
+    content: "";
+    display: table;
+    clear: both;
+}

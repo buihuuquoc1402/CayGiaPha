@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gia Phả Họ Nguyễn - SPA Demo</title>
+    <!-- <link rel="stylesheet" href="../css/style.css"> -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/thanhphan.css">
+    <link rel="stylesheet" href="../css/sukien.css">
+    <link rel="stylesheet" href="../css/modals.css">
+    <link rel="stylesheet" href="../css/pha_do.css">
+</head>
+
+<body>
+    <div class="top-admin-controls">
+        <button class="nav-button admin-button"
+            style="width: 100px; height: 30px; font-size: 20px; margin: 2px 0 0 10px;">Thêm</button>
+        <button class="nav-button admin-button"
+            style="width: 100px; height: 30px; font-size: 20px; margin: 2px 0 0 10px;">Sửa</button>
+        <button class="nav-button admin-button"
+            style="width: 100px; height: 30px; font-size: 20px; margin: 2px 0 0 10px;">Xóa</button>
+        <button class="nav-button login-admin-button"
+            style="width: 100px; height: 30px; font-size: 20px; margin: 2px 0 0 10px;">Đề
+            xuất</button>
+        <button class="nav-button login-button"
+            style="width: 100px; height: 30px; font-size: 20px; margin: 2px 0 0 13px;">Đăng
+            nhập</button>
+    </div>
+
+    <header class="spa-header">
+        <div class="header-banner">
+            <img src="../images/dragon_left.png" alt="Rồng Trái" class="dragon-icon">
+            <img src="../images/logo.png" alt="Logo" class="dragon-icon">
+            <img src="../images/dragon_right.png" alt="Rồng Phải" class="dragon-icon">
+        </div>
+
+        <nav class="spa-nav">
+            <button class="nav-button" data-page="trangchu">Trang Chủ</button>
+            <button class="nav-button" data-page="phaky">Phả Ký</button>
+            <button class="nav-button" data-page="phido">Phả Đồ</button>
+            <button class="nav-button" data-page="congduc">Công Đức</button>
+            <button class="nav-button" data-page="thuvien">Thư Viện</button>
+            <button class="nav-button" data-page="sukien">Sự Kiện</button>
+            <button class="nav-button" data-page="tintuc">Tin Tức</button>
+        </nav>
+    </header>
+
+    <!-- đăng nhập -->
+    <div id="login-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Đăng Nhập Hệ Thống</h2>
+
+            <form class="login-form">
+                <div class="form-group">
+                    <label for="username">Họ và tên</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mật khẩu</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="captcha">Mã xác nhận</label>
+                    <input type="text" id="captcha" name="captcha" required>
+                </div>
+                <button type="submit" class="submit-login-button">Đăng nhập</button>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Đề xuất -->
+    <div id="proposal-modal" class="modal-overlay">
+        <div class="modal-content large-modal-content"> <span class="close-button proposal-close-button">&times;</span>
+            <h2>Đề Xuất Sửa Đổi Thông Tin</h2>
+
+            <form class="proposal-form">
+                <div class="form-group">
+                    <label for="proposer-name">Họ tên người đề xuất</label>
+                    <input type="text" id="proposer-name" name="proposer-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="proposal-issue">Vấn đề muốn đề xuất sửa đổi</label>
+                    <textarea id="proposal-issue" name="proposal-issue" rows="8" required></textarea>
+                </div>
+                <button type="submit" class="submit-proposal-button">Gửi</button>
+            </form>
+
+        </div>
+    </div>
+
+    <div id="event-register-modal" class="modal-overlay">
+        <div class="modal-content medium-modal-content">
+            <span class="close-button event-register-close-button">&times;</span>
+
+            <h3>Đăng Ký/Đề Xuất Thêm Sự Kiện</h3>
+
+            <form class="event-register-form">
+                <div class="form-group">
+                    <label for="event-sender-name">Tên người gửi (người đăng ký)</label>
+                    <input type="text" id="event-sender-name" name="event_sender_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="event-name">Tên sự kiện</label>
+                    <input type="text" id="event-name" name="event_name" required>
+                </div>
+
+                <div class="form-group row-group">
+                    <div class="half-width">
+                        <label for="event-lunar-date">Ngày âm lịch</label>
+                        <input type="text" id="event-lunar-date" name="event_lunar_date"
+                            placeholder="Ví dụ: 10/10/2026">
+                    </div>
+                    <div class="half-width">
+                        <label for="event-gregorian-date">Ngày dương lịch</label>
+                        <input type="text" id="event-gregorian-date" name="event_gregorian_date"
+                            placeholder="Ví dụ: 20/11/2026">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="event-location">Địa điểm sự kiện</label>
+                    <input type="text" id="event-location" name="event_location">
+                </div>
+
+                <div class="form-group row-group">
+                    <div class="half-width">
+                        <label for="event-repeat">Lặp lại / Không lặp</label>
+                        <select id="event-repeat" name="event_repeat">
+                            <option value="no-repeat">Không lặp</option>
+                            <option value="yearly">Hàng năm</option>
+                            <option value="monthly">Hàng tháng</option>
+                        </select>
+                    </div>
+                    <div class="half-width">
+                        <label for="event-notification">Gửi thông báo</label>
+                        <select id="event-notification" name="event_notification">
+                            <option value="yes">Có</option>
+                            <option value="no">Không</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="event-description">Mô tả chi tiết</label>
+                    <textarea id="event-description" name="event_description" rows="4"></textarea>
+                </div>
+
+                <!-- <div class="form-group">
+                    <label for="event-note">URL Ảnh</label>
+                    <textarea id="event-note" name="event_note" rows="2"></textarea>
+                </div> -->
+
+                <div class="form-actions">
+                    <button type="button" class="cancel-button event-register-close-button">Hủy bỏ</button>
+                    <button type="submit" class="submit-button">Lưu lại</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Thêm -->
+    <div id="add-member-modal" class="modal-overlay">
+        <div class="modal-content large-modal-content">
+            <span class="close-button add-close-button">&times;</span>
+            <h3>Thêm Thành Viên Mới (Bảng Nhân)</h3>
+
+            <form class="member-form" id="add-member-form">
+                <div class="form-group row-group">
+                    <div class="half-width">
+                        <label for="add-name">Họ và Tên (*)</label>
+                        <input type="text" id="add-name" name="Ten" required>
+                    </div>
+                    <div class="half-width">
+                        <label for="add-id-giadinh">ID Gia Đình/Chi Nhánh (*)</label>
+                        <input type="number" id="add-id-giadinh" name="IDGiaDinh" min="1" required
+                            placeholder="Ví dụ: 3">
+                    </div>
+                </div>
+
+                <div class="form-group row-group">
+                    <div class="third-width">
+                        <label for="add-gender">Giới tính (*)</label>
+                        <select id="add-gender" name="GioiTinh" required>
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        </select>
+                    </div>
+                    <div class="third-width">
+                        <label for="add-generation">Thế hệ (Đời)</label>
+                        <input type="number" id="add-generation" name="TheHe" min="1" placeholder="Ví dụ: 3">
+                    </div>
+                    <div class="third-width">
+                        <label for="add-noisinh">Nơi Sinh</label>
+                        <input type="text" id="add-noisinh" name="NoiSinh" placeholder="Ví dụ: Hà Nội">
+                    </div>
+                </div>
+
+                <div class="form-group row-group">
+                    <div class="half-width">
+                        <label for="add-dob">Ngày Sinh</label>
+                        <input type="date" id="add-dob" name="NgaySinh">
+                    </div>
+                    <div class="half-width">
+                        <label for="add-dod">Ngày Mất</label>
+                        <input type="date" id="add-dod" name="NgayMat">
+                    </div>
+                </div>
+
+                <div class="form-group row-group">
+                    <div class="half-width">
+                        <label for="add-email">Email</label>
+                        <input type="email" id="add-email" name="Email">
+                    </div>
+                    <div class="half-width">
+                        <label for="add-sdt">Số Điện Thoại</label>
+                        <input type="text" id="add-sdt" name="SoDienThoai">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="add-image-url">URL Hình Ảnh</label>
+                    <input type="text" id="add-image-url" name="URLAnh" placeholder="Dán đường dẫn ảnh đại diện">
+                </div>
+
+                <hr style="border-top: 1px solid #c99e69; margin: 20px 0;">
+
+                <p style="font-weight: bold; color: #8b0000;">Thiết lập Quan hệ (Sẽ tạo các bản ghi mới trong bảng
+                    QuanHe và
+                    KetHon)</p>
+
+                <div class="form-group row-group">
+                    <div class="half-width">
+                        <label for="add-pid-cha">ID Cha (IDNhan)</label>
+                        <input type="number" id="add-pid-cha" name="IDCha" placeholder="ID người cha">
+                    </div>
+                    <div class="half-width">
+                        <label for="add-pid-me">ID Mẹ (IDNhan)</label>
+                        <input type="number" id="add-pid-me" name="IDMe" placeholder="ID người mẹ">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="add-spid">ID Vợ/Chồng (IDNhan)</label>
+                    <input type="number" id="add-spid" name="IDVoChong"
+                        placeholder="ID người vợ/chồng (Chỉ thêm nếu chưa tồn tại)">
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="cancel-button add-close-button">Hủy bỏ</button>
+                    <button type="submit" class="submit-button">Lưu Thành Viên</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sửa -->
+    <div id="edit-member-modal" class="modal-overlay">
+        <div class="modal-content large-modal-content">
+            <span class="close-button edit-close-button">&times;</span>
+            <h3>Chỉnh Sửa Thông Tin Thành Viên (Bảng Nhân)</h3>
+
+            <form class="member-form" id="edit-member-form">
+                <div class="form-group row-group">
+                    <div class="half-width">
+                        <label for="edit-id-nhan">ID Thành Viên (*)</label>
+                        <input type="number" id="edit-id-nhan" name="IDNhan" readonly required class="disabled-input">
+                    </div>
+                    <div class="half-width">
+                        <label for="edit-id-giadinh">ID Gia Đình/Chi Nhánh (*)</label>
+                        <input type="number" id="edit-id-giadinh" name="IDGiaDinh" min="1" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-name">Họ và Tên (*)</label>
+                    <input type="text" id="edit-name" name="Ten" required>
+                </div>
+
+                <div class="form-group row-group">
+                    <div class="third-width">
+                        <label for="edit-gender">Giới tính (*)</label>
+                        <select id="edit-gender" name="GioiTinh" required>
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        </select>
+                    </div>
+                    <div class="third-width">
+                        <label for="edit-generation">Thế hệ (Đời)</label>
+                        <input type="number" id="edit-generation" name="TheHe" min="1">
+                    </div>
+                    <div class="third-width">
+                        <label for="edit-noisinh">Nơi Sinh</label>
+                        <input type="text" id="edit-noisinh" name="NoiSinh">
+                    </div>
+                </div>
+
+                <div class="form-group row-group">
+                    <div class="half-width">
+                        <label for="edit-dob">Ngày Sinh</label>
+                        <input type="date" id="edit-dob" name="NgaySinh">
+                    </div>
+                    <div class="half-width">
+                        <label for="edit-dod">Ngày Mất</label>
+                        <input type="date" id="edit-dod" name="NgayMat">
+                    </div>
+                </div>
+
+                <div class="form-group row-group">
+                    <div class="half-width">
+                        <label for="edit-email">Email</label>
+                        <input type="email" id="edit-email" name="Email">
+                    </div>
+                    <div class="half-width">
+                        <label for="edit-sdt">Số Điện Thoại</label>
+                        <input type="text" id="edit-sdt" name="SoDienThoai">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-image-url">URL Hình Ảnh</label>
+                    <input type="text" id="edit-image-url" name="URLAnh">
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="cancel-button edit-close-button">Hủy bỏ</button>
+                    <button type="submit" class="submit-button">Lưu Thay Đổi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Xóa -->
+    <div id="delete-member-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button delete-close-button">&times;</span>
+            <h3>Xác Nhận Xóa Thành Viên</h3>
+
+            <form class="member-form" id="delete-member-form">
+                <p style="text-align: center; color: #8b0000; font-weight: bold;">
+                    ⚠️ Cảnh báo: Việc xóa một thành viên sẽ **XÓA TẤT CẢ** các bản ghi liên quan trong bảng **QuanHe**,
+                    **KetHon**, và có thể là **GiaDinh**. Hành động này không thể hoàn tác.
+                </p>
+
+                <div class="form-group">
+                    <label for="delete-id-nhan">ID Thành Viên Cần Xóa (*)</label>
+                    <input type="number" id="delete-id-nhan" name="IDNhan" required
+                        placeholder="Nhập IDNhan để xác nhận">
+                </div>
+
+                <div class="form-actions" style="justify-content: space-between;">
+                    <button type="button" class="cancel-button delete-close-button"
+                        style="height: 50px; margin: 30px 0 0 120px;">Hủy
+                        bỏ</button>
+                    <button type="submit" class="submit-login-button"
+                        style="width: 40%; height: 50px; margin-top: 30px; background-color: #d9534f;">Xác
+                        nhận XÓA</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <main id="spa-content" class="content-container">
+    </main>
+
+    <!-- <script src="../script/lib/orgchart.js"></script> -->
+    <!-- <script src="../script/lib/jquery-3.7.1.js"></script> -->
+    <!-- <script src="../script/lib/familytree.js"></script> -->
+    <script src="../script/lib/d3.v7.min.js"></script>
+
+    <script type="module" src="../script/data.js"></script>
+    <script type="module" src="../script/templating.js"></script>
+    <script type="module" src="../script/modals.js"></script>
+    <script type="module" src="../script/spa.js"></script>
+    <script type="module" src="../script/app.js"></script>
+</body>
+
+</html>

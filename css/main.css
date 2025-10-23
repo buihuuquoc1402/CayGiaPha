@@ -1,0 +1,138 @@
+/* css/main.css - CSS chung và bố cục chính */
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5e9d0;
+}
+
+.top-admin-controls {
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px 20px;
+    background-color: #e0d8c0;
+    border-bottom: 1px solid #c99e69;
+}
+
+.admin-button {
+    background-color: #6a532d;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    margin-left: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.admin-button:hover {
+    background-color: #8b5e2b;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}
+
+.spa-header {
+    background-color: #f7f1e3;
+    border-bottom: 3px solid #b8860b;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.header-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.title-text {
+    font-size: 30px;
+    color: #8b0000;
+    margin: 0 20px;
+    border: 1px solid #c99e69;
+    padding: 5px 15px;
+    background-color: #fffaf0;
+}
+
+.dragon-icon {
+    width: 250px;
+    height: auto;
+}
+
+.spa-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding-bottom: 20px;
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    border-radius: 4px;
+    position: relative;
+    width: 130px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Dancing Script', cursive, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #6a532d;
+    text-shadow: 0.5px 0.5px 0 #fff;
+
+    background-color: #fffaf0;
+    border: 2px solid #b8860b;
+    transition: all 0.2s ease;
+
+    /* Viền giả lập */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3), 0 0 0 4px #4c3a1b;
+}
+
+.nav-button:hover {
+    background-color: #f0e6c6;
+    border-color: #8b5e2b;
+    transform: translateY(-2px);
+}
+
+.nav-button.active {
+    background-color: #b8860b;
+    color: #fff;
+    border-color: #6a532d;
+    text-shadow: 1px 1px 1px #333;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3), 0 0 0 4px #4c3a1b;
+}
+
+.nav-button.active:hover {
+    background-color: #a07820;
+}
+
+.content-container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #c99e69;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 400px;
+}
+
+.content-section h2 {
+    color: #8b0000;
+    border-bottom: 2px solid #b8860b;
+    padding-bottom: 5px;
+}

@@ -1,0 +1,355 @@
+/*  Cấu trúc Phả Đồ (Family Tree Structure) Sử dụng Flexbox để căn chỉnh các cấp */
+.phado-tree-root {
+    /* Cho phép cuộn ngang nếu cây quá rộng */
+    overflow-x: auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.phado-tree,
+.phado-tree__children {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    /* Bố cục con cái nằm ngang */
+    justify-content: center;
+}
+
+/* Thẻ Cha Mẹ */
+.phado-tree__item {
+    position: relative;
+    padding-top: 60px;
+    text-align: center;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+/* Container chứa một node hoặc một cặp Cha-Mẹ */
+.phado-tree__node-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+/* Node thành viên */
+.phado-tree__node {
+    width: 200px;
+    height: 80px;
+    border-radius: 8px;
+    color: white;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.phado-tree__node:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+}
+
+.phado-img {
+    width: 60px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.phado-content {
+    text-align: left;
+    flex-grow: 1;
+    padding-right: 8px;
+}
+
+.phado-name {
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.phado-title {
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+/* Đường nối chung (cho cả hôn nhân và con cái) */
+.phado-line {
+    position: absolute;
+    background-color: #333;
+    z-index: 5;
+}
+
+/* Đường nối Hôn nhân */
+.phado-line--marriage {
+    height: 3px;
+    width: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 5px;
+}
+
+/* Đảm bảo các node trong cặp đôi xếp cạnh nhau */
+.phado-tree__node-container.is-paired {
+    margin-bottom: 30px;
+}
+
+/* Đường nối Dọc */
+.phado-line--vertical {
+    width: 3px;
+    height: 60px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Đường nối Ngang (Nối tất cả các anh chị em) */
+.phado-tree__children::before {
+    content: '';
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    border-top: 3px solid #333;
+    z-index: 4;
+}
+
+/* Đường nối Dọc cho từng người con */
+.phado-tree__item::before {
+    content: '';
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    width: 3px;
+    height: 20px;
+    background-color: #333;
+    z-index: 5;
+    transform: translateX(-50%);
+}
+
+/* Tinh chỉnh đặc biệt: Xóa đường nối trên cho node gốc */
+.phado-tree>.phado-tree__item::before {
+    content: none;
+}
+
+.phado-tree>.phado-tree__item {
+    padding-top: 0;
+}
+
+.phado-tree>.phado-tree__item>.phado-line--vertical {
+    content: none;
+    height: 0;
+}
+
+.phado-tree__node-container.is-paired+.phado-line--vertical {
+    left: 50%;
+}
+
+.phado-orgchart-pair-node {
+    width: 250px;
+    min-height: 120px;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.phado-member-pair {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 100%;
+    padding-top: 5px;
+}
+
+.member-left,
+.member-right {
+    width: 45%;
+    text-align: center;
+}
+
+/* Định dạng ảnh */
+.phado-orgchart-pair-node img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 5px auto;
+    display: block;
+    border: 2px solid #fff;
+}
+
+/* Dấu phân cách hôn nhân */
+.pair-separator {
+    width: 10%;
+    font-size: 16px;
+    text-align: center;
+    color: #FF69B4;
+    line-height: 50px;
+    font-weight: bold;
+}
+
+.pair-separator::after {
+    content: "⚭";
+}
+
+/* Text thế hệ */
+.phado-generation-text {
+    text-align: center;
+    font-size: 10px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.phado-name {
+    font-size: 11px;
+    font-weight: bold;
+    word-wrap: break-word;
+    height: 30px;
+    overflow: hidden;
+}
+
+/* bắt đầu */
+.content-section.phado-page {
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f1e7;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    color: #d32f2f;
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.phado-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#pido-select {
+    padding: 5px;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.pido-stats {
+    font-size: 1em;
+    color: #666;
+}
+
+.phado-toggles {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.phado-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #d32f2f;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.phado-button:hover {
+    background-color: #b71c1c;
+}
+
+#phado-chart-container {
+    background-color: #fff;
+    /* padding: 20px; */
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.2em;
+    color: #666;
+}
+
+/* Khung chứa tổng thể cây */
+.d3-phado-container {
+    background: linear-gradient(180deg, #fafafa, #f0f0f0);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Đường nối cha - con */
+.d3-link {
+    fill: none;
+    stroke: #999;
+    stroke-width: 2px;
+    opacity: 0.6;
+}
+
+/* Đường nối vợ chồng */
+.d3-partner-link {
+    fill: none;
+    stroke: #444;
+    stroke-width: 2px;
+    stroke-dasharray: 4 2;
+}
+
+/* Node Nam */
+.d3-node.male rect {
+    stroke: #2196F3;
+    fill: #E3F2FD;
+}
+
+/* Node Nữ */
+.d3-node.female rect {
+    stroke: #FF4081;
+    fill: #FCE4EC;
+}
+
+/* Tên */
+.d3-name {
+    font-weight: 600;
+    font-size: 10px;
+    fill: #333;
+}
+
+/* Thế hệ */
+.d3-gen {
+    font-size: 12px;
+    fill: #666;
+}
+
+.d3-node:hover rect {
+    stroke-width: 3px;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
+}
+
+/* đường nối vợ chồng */
+.d3-partner-link {
+    display: none;
+}
+
+.d3-link {
+    fill: none;
+    stroke: black;
+    stroke-width: 2px;
+}
